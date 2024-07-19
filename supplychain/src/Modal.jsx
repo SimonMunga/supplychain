@@ -29,7 +29,7 @@ if(isVisible){
           <br />
           <label>Category:</label>
           <select value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option value="" disabled>Select a category</option>
+            <option value="" disabled>Select a Category</option>
             {categories.map((cat, index) => (
               <option key={index} value={cat.name}>{cat.name}</option>
             ))}
