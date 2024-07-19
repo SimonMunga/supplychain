@@ -69,10 +69,14 @@ const Home = () => {
   }, []);
 
   // Function to delete an inventory item by index
-  const deleteInventoryItem = (index) => {
-    const updatedInventory = [...inventory];
-    updatedInventory.splice(index, 1);
-    setInventory(updatedInventory);
+  const deleteInventoryItem = (id) => {
+    apiService.deleteProduct(id)
+    .then(response =>{
+      alert("successfull")
+    })
+    .catch(error => {
+      alert(error)
+    })
   };
 
   // Function to add a new category
@@ -140,7 +144,7 @@ const Home = () => {
                   <td>${item.price ? item.price.toFixed(2) : 'N/A'}</td>
                   <td>
                     <button>Edit</button>
-                    <button onClick={() => deleteInventoryItem(index)}>Delete</button>
+                    <button onClick={() => deleteInventoryItem(item.id)}>Delete</button>
                   </td>
                 </tr>
               ))}
