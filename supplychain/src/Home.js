@@ -3,13 +3,14 @@ import './home.css';
 import apiService from './service/apiService';
 import { useNavigate } from 'react-router-dom';
 import Modal from './Modal';
-
+import AddCategoryModal from './AddCategoryModal';
 
 const Home = () => {
   const navigate = useNavigate();
   const [inventory, setInventory] = useState([]);
+  const [categories, setCategories] = useState([]); // <-- Added this line
   const [isModalVisible, setModalVisible] = useState(false);
-
+  const [isCategoryModalVisible, setCategoryModalVisible] = useState(false);
 
   // Check token when the component mounts
   useEffect(() => {
@@ -32,7 +33,7 @@ const Home = () => {
       });
   }, [navigate]);
 
-  // Fetch products from the API when the component mounts
+  // Fetch products and categories from the API when the component mounts
   useEffect(() => {
     apiService.getproducts()
       .then(response => {
@@ -49,9 +50,23 @@ const Home = () => {
         }
         console.error('Error fetching products:', error);
       });
-  }, []);
 
-  
+    apiService.getcategories() // <-- Added this line
+      .then(response => {
+        console.log(response.data.categories);
+        setCategories(response.data.categories);
+      })
+      .catch(error => {
+        if (error.response) {
+          alert(error.response.data.message);
+        } else if (error.request) {
+          alert('No response received from the server.');
+        } else {
+          alert(`Error: ${error.message}`);
+        }
+        console.error('Error fetching categories:', error);
+      });
+  }, []);
 
   // Function to delete an inventory item by index
   const deleteInventoryItem = (index) => {
@@ -60,20 +75,27 @@ const Home = () => {
     setInventory(updatedInventory);
   };
 
-  // Function to add a new category (for future implementation)
-  const addCategory = () => {
-    console.log('Adding a new category');
+  // Function to add a new category
+  const addCategory = (newCategory) => {
+    console.log('Adding a new category:', newCategory);
+    // Here you can implement the logic to add the new category
   };
-// Function to toggle modal visibility
-const toggleModal = () => {
-  setModalVisible(!isModalVisible);
-};
+
+  // Function to toggle product modal visibility
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  // Function to toggle category modal visibility
+  const toggleCategoryModal = () => {
+    setCategoryModalVisible(!isCategoryModalVisible);
+  };
 
   return (
     <div className="dashboard-container">
       <aside className="sidebar">
         <div className="sidebar-header">
-          <h2>home</h2>
+          <h2>Home</h2>
         </div>
         <nav className="sidebar-nav">
           <ul>
@@ -82,7 +104,7 @@ const toggleModal = () => {
             <li>Categories</li>
             <li>Supplies</li>
             <li>Customers</li>
-            <li>purchase orders</li>
+            <li>Purchase Orders</li>
           </ul>
         </nav>
       </aside>
@@ -91,9 +113,9 @@ const toggleModal = () => {
           <h1>Inventory</h1>
           <div className="header-buttons">
             <button className="add-button" onClick={toggleModal}>
-              Add product
+              Add Product
             </button>
-            <button className="add-button" onClick={addCategory}>
+            <button className="add-button" onClick={toggleCategoryModal}>
               Add Category
             </button>
           </div>
@@ -112,15 +134,15 @@ const toggleModal = () => {
             <tbody>
               {inventory.map((item, index) => (
                 <tr key={index}>
-                <td>{item.name}</td>
-                <td>{item.category ? item.category.name : 'N/A'}</td>
-                <td>{item.quantity}</td>
-                <td>${item.price ? item.price.toFixed(2) : 'N/A'}</td>
-                <td>
-                  <button>Edit</button>
-                  <button onClick={() => deleteInventoryItem(index)}>Delete</button>
-                </td>
-              </tr>
+                  <td>{item.name}</td>
+                  <td>{item.category ? item.category.name : 'N/A'}</td>
+                  <td>{item.quantity}</td>
+                  <td>${item.price ? item.price.toFixed(2) : 'N/A'}</td>
+                  <td>
+                    <button>Edit</button>
+                    <button onClick={() => deleteInventoryItem(index)}>Delete</button>
+                  </td>
+                </tr>
               ))}
             </tbody>
           </table>
@@ -128,8 +150,14 @@ const toggleModal = () => {
       </main>
       <Modal
         isVisible={isModalVisible}
-        onClose={() => setModalVisible(false)}
-        //onSave={addInventoryItem}
+        onClose={toggleModal}
+        categories={categories} // <-- Added this line
+        // onSave={addInventoryItem} // Uncomment and implement addInventoryItem if needed
+      />
+      <AddCategoryModal
+        isVisible={isCategoryModalVisible}
+        onClose={toggleCategoryModal}
+        onSave={addCategory}
       />
     </div>
   );

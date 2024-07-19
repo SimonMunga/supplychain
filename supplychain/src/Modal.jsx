@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
+import apiService from './service/apiService';
 
-const Modal = ({ isVisible, onClose, onSave }) => {
+
+const Modal = ({ isVisible, onClose}) => {
   const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
-
+  const [categories, setcategories] = useState('');
+  const [category, setCategory]= useState('')
   const handleSave = () => {
-    const newItem = {
-      name: name,
-      category: { name: category }, // Assuming category is an object
-      stock: 0, // Default values for stock and price
-      price: 0.0,
-    };
-    onSave(newItem);
+    
+    
     onClose();
   };
 
   if (!isVisible) {
     return null;
   }
-
+if(isVisible){
+  
+}
   return (
     <div className="modal">
       <div className="modal-content">
@@ -29,9 +28,14 @@ const Modal = ({ isVisible, onClose, onSave }) => {
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
           <br />
           <label>Category:</label>
-          <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
+          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="" disabled>Select a category</option>
+            {categories.map((cat, index) => (
+              <option key={index} value={cat.name}>{cat.name}</option>
+            ))}
+          </select>
           <br />
-          <button type="button" onClick={handleSave}>Save</button>
+          <button type="button" onClick={handleSave}>Add</button>
         </form>
       </div>
     </div>

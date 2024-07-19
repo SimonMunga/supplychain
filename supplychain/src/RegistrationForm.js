@@ -14,6 +14,7 @@ const RegistrationForm = () => {
     event.preventDefault();
     const user = { username, email, password, role };
     
+    
     apiService.createUser(user)
       .then(response => {
         alert(response.data.message);
