@@ -10,7 +10,7 @@ import EditModal from './EditModal';
 import { Link } from 'react-router-dom'; 
 
 
-const Home = () => {
+const PurchaseOrders = () => {
   const navigate = useNavigate();
   const [inventory, setInventory] = useState([]);
   const [categories, setCategories] = useState([]); // <-- Added this line
@@ -124,7 +124,6 @@ const Home = () => {
           <ul>
             <li>User</li>
             <li>Products</li>
-            <li>Categories</li>
             <li>Supplies</li>
             <li>Customers</li>
             <li><Link to="/PurchaseOrders">Purchase Orders</Link></li> 
@@ -198,4 +197,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default PurchaseOrders;

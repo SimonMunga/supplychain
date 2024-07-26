@@ -14,13 +14,16 @@ const LoginPage = () => {
 
     apiService.login(credentials)
       .then(response => {
-        alert(response.data.message);
+        
         if(response.data.message==="Successful"){ 
           const token=response.data.token
           localStorage.setItem('token', token); 
           navigate("/home")
 
 
+        }
+        else{
+          alert(response.data.message);
         }
       })
       .catch(error => {
