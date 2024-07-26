@@ -5,6 +5,8 @@ import RegistrationForm from './RegistrationForm';
 import OtpVerificationForm from './OtpVerificationForm';
 import LoginPage from './LoginPage';
 import Home from './Home';
+import PurchaseOrders from './PurchaseOrders';
+
 
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
             <Route path="/otpverification" element={<OtpVerificationForm />} />
             <Route path="/login" element={<LoginPage/>} />
             <Route path="/Home" element={<Home/>} />
+            <Route path='/PurchaseOrders' element={<PurchaseOrders/>} />
             
           </Routes>
         </header>

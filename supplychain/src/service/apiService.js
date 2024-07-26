@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://192.168.254.184:8080'; // Adjust the URL based on your backend
+const API_URL = 'http://192.168.254.41:8080'; // Adjust the URL based on your backend
 const token = localStorage.getItem('token');
 if (!token) {
     throw new Error('No token found');
@@ -26,12 +26,12 @@ const apiService = {
     getproducts: () => {
        
 
-        return axios.get(`${API_URL}/products/all`, config);
+        return axios.get(`${API_URL}/products/all`);
     },
 
     getcategories: () => {
        
-        return axios.get(`${API_URL}/categories/all`, config);
+        return axios.get(`${API_URL}/categories/all`);
     }
 };
 
