@@ -20,25 +20,25 @@ const PurchaseOrders = () => {
   const [isEditVisible, setEditModal]=useState(false);
 
   // Check token when the component mounts
-  useEffect(() => {
-    apiService.checktoken(localStorage.getItem('token'))
-      .then(response => {
-        if (response.data.message !== 'valid') {
-          navigate('/login');
-        }
-      })
-      .catch(error => {
-        navigate('/login');
-        if (error.response) {
-          alert(error.response.data.message);
-        } else if (error.request) {
-          alert('No response received from the server.');
-        } else {
-          alert(`Error: ${error.message}`);
-        }
-        console.error('Error checking token:', error);
-      });
-  }, [navigate]);
+  // useEffect(() => {
+  //   apiService.checktoken(localStorage.getItem('token'))
+  //     .then(response => {
+  //       if (response.data.message !== 'valid') {
+  //         navigate('/login');
+  //       }
+  //     })
+  //     .catch(error => {
+  //       navigate('/login');
+  //       if (error.response) {
+  //         alert(error.response.data.message);
+  //       } else if (error.request) {
+  //         alert('No response received from the server.');
+  //       } else {
+  //         alert(`Error: ${error.message}`);
+  //       }
+  //       console.error('Error checking token:', error);
+  //     });
+  // }, [navigate]);
 
   // Fetch products and categories from the API when the component mounts
   useEffect(() => {
