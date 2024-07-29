@@ -125,8 +125,7 @@ const Home = () => {
           <ul>
             <li>User</li>
             <li>Products</li>
-            <li>Categories</li>
-            <li>Supplies</li>
+            <li>Supplier</li>
             <li>Customers</li>
             <li><Link to="/PurchaseOrders">Purchase Orders</Link></li> 
           </ul>
