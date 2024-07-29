@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Rawmaterials from '../rawmaterials';
 
 const API_URL = 'http://192.168.254.134:8080'; // Adjust the URL based on your backend
 const token = localStorage.getItem('token');
@@ -9,7 +10,7 @@ if (!token) {
 const config = {
     headers: {
         'Bearer': token,
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json', 
     },
 };
 const apiService = {
@@ -24,7 +25,8 @@ const apiService = {
     createProduct: (product) => axios.post(`${API_URL}/products/create`),
     deleteProduct:(id) => axios.delete(`${API_URL}/products/${id}`),
     getRawMaterials:() => axios.get(`${API_URL}/rawmaterials/all`),
-    createRawMaterials:() => axios.post(`${API_URL}/rawmaterial/create`),
+    createRawMaterials:(rawMaterial) => axios.post(`${API_URL}/rawmaterials/create`,rawMaterial),
+    deleterawmaterials:(id) => axios.delete(`${API_URL}/rawmaterials/${id}`),
     getproducts: () => {
        
 

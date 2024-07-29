@@ -164,9 +164,11 @@ const Home = () => {
                     
                   </td>
                   <td>
-                    <button className="add-button">
+                    
+                    <Link to="/configuration"><button className="add-button">
                     Configuration
-                    </button></td>
+                    </button></Link>
+                    </td>
                 </tr>
               ))}
             </tbody>
