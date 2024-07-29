@@ -10,6 +10,7 @@ const Modal = ({ isVisible, onClose,categories}) => {
   const [price, setPrice] = useState('')
   
   const handleSave = () => {
+    alert(name+ price + category)
     
     apiService.createProduct({"name":name,"price":price,"category":category})
     .then (response => {
@@ -20,7 +21,6 @@ const Modal = ({ isVisible, onClose,categories}) => {
 
     })
     .catch(error => {
-      alert("error")
       alert(error)
     });
     onClose();

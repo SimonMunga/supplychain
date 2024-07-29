@@ -7,7 +7,6 @@ const Modal = ({ isVisible, onClose }) => {
   
 
   const handleSave = (e) => {
-    alert("called")
     e.preventDefault();
     apiService.createcategory({ name })
       .then(response => {

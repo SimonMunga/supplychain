@@ -3,19 +3,17 @@ import './home.css';
 import apiService from './service/apiService';
 import { useNavigate } from 'react-router-dom';
 import Modal from './Modal';
-import AddCategoryModal from './AddCategoryModal';
+
 import './App.css';
 import Updatemodal from './Updatemodal'; 
 import EditModal from './EditModal';
 import { Link } from 'react-router-dom'; 
 
 
-const Home = () => {
+const Rawmaterials = () => {
   const navigate = useNavigate();
   const [inventory, setInventory] = useState([]);
-  const [categories, setCategories] = useState([]); // <-- Added this line
   const [isModalVisible, setModalVisible] = useState(false);
-  const [isCategoryModalVisible, setCategoryModalVisible] = useState(false);
   const [isUpdateVisible, setUpdateModal]= useState(false);
   const [isEditVisible, setEditModal]=useState(false);
 
@@ -43,10 +41,10 @@ const Home = () => {
 
   // Fetch products and categories from the API when the component mounts
   useEffect(() => {
-    apiService.getproducts()
+    apiService.getRawMaterials()
       .then(response => {
-        console.log(response.data.products);
-        setInventory(response.data.products);
+        
+        setInventory(response.data.rawmaterials);
       })
       .catch(error => {
         if (error.response) {
@@ -59,21 +57,7 @@ const Home = () => {
         console.error('Error fetching products:', error);
       });
 
-    apiService.getcategories() // <-- Added this line
-      .then(response => {
-        console.log(response.data.categories);
-        setCategories(response.data.categories);
-      })
-      .catch(error => {
-        if (error.response) {
-          alert(error.response.data.message);
-        } else if (error.request) {
-          alert('No response received from the server.');
-        } else {
-          alert(`Error: ${error.message}`);
-        }
-        console.error('Error fetching categories:', error);
-      });
+  
   }, []);
 
   // Function to delete an inventory item by index
@@ -88,16 +72,14 @@ const Home = () => {
     })
   };
 
+ 
+
   // Function to toggle product modal visibility
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
-  // Function to toggle category modal visibility
-  const toggleCategoryModal = () => {
-    setCategoryModalVisible(!isCategoryModalVisible);
-  };
-
+ 
   const toggleUpdatemodal = () => {
     setUpdateModal(!isUpdateVisible);
   };
@@ -117,7 +99,7 @@ const Home = () => {
         </div>
         <nav className="sidebar-nav">
           <ul>
-            <li><Link to="#">Home</Link></li>
+            <li><Link to="/Home">Home</Link></li>
             <li><Link to="#">Products</Link></li>
             <li><Link to="/rawmaterials">Raw Materials</Link></li>
             <li><Link to="#">Categories</Link></li>
@@ -129,60 +111,45 @@ const Home = () => {
       </aside>
       <main className="main-content">
         <header className="main-header">
-          <h1>Inventory</h1>
+          <h1>Raw Materials</h1>
           <div className="header-buttons">
             <button className="add-button mr-3" onClick={toggleModal}>
-              Add New Product
+              Add New Raw Material
             </button>
-            <button className="add-button" onClick={toggleCategoryModal}>
-              Add Category
-            </button>
+           
           </div>
         </header>
         <section className="inventory-table">
+            <h3>Raw Materials</h3>
           <table>
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Stock</th>
-                <th>Price</th>
+                <th>Name</th> 
+                <th>In Store</th>
+                <th>Buying Price </th>
                 <th>Actions</th>
-                <th>Configuration</th>
+                
               </tr>
             </thead>
             <tbody>
               {inventory.map((item, index) => (
                 <tr key={index}>
                   <td>{item.name}</td>
-                  <td>{item.category ? item.category.name : 'N/A'}</td>
-                  <td>{item.quantity}<button className="update_button" > Produce </button></td>
+                  <td>{item.quantity}<button className="update_button" onClick={toggleUpdatemodal} > update </button></td>
                   <td>${item.price ? item.price.toFixed(2) : 'N/A'}</td>
                   <td>
                     <button className='edit_button' onClick={toggleEditModal}>Edit</button>
                     <button className="delete_button mr-3" onClick={() => deleteInventoryItem(item.id)}> Delete </button>
                     
                   </td>
-                  <td>
-                    <button className="add-button">
-                    Configuration
-                    </button></td>
                 </tr>
               ))}
             </tbody>
           </table>
         </section>
       </main>
-      <Modal
-        isVisible={isModalVisible}
-        onClose={toggleModal}
-        categories={categories} // <-- Added this line
-        
-      />
-      <AddCategoryModal
-        isVisible={isCategoryModalVisible}
-        onClose={toggleCategoryModal}
-      />
+    
+     
 
       <Updatemodal
       onClose={toggleUpdatemodal}
@@ -199,4 +166,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Rawmaterials;
