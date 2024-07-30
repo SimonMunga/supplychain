@@ -8,26 +8,26 @@ const AddRawMaterialModal = ({ isVisible, onClose, onAdd }) => {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    apiService.createRawMaterials({ name, price }) // Update API call as per your service
+    apiService.createRawMaterials({ name, price })
       .then(response => {
-        alert('Successful');
-        setName(''); // Clear the input field
-        setPrice(''); // Clear the input field
-        onClose(); // Optionally close the modal
+        setName('');
+        setPrice('');
+        alert(response.data.message); // Update inventory in parent component
+        onClose();
       })
       .catch(error => {
         alert(error);
       });
   };
 
-
   if (!isVisible) return null;
 
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <h2>Add New Raw Material</h2>
+        
         <form>
+        <h2>Add New Raw Material</h2>
           <div className="form-group">
             <label htmlFor="name">Name:</label>
             <input 

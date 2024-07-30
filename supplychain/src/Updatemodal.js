@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
-import './modal.css';
+import './updatemodal.css';
 import apiService from './service/apiService';
 
-const Modal = ({ isVisible, onClose }) => {
-  const [name, setName] = useState('');
-  
+const Modal = ({ isVisible, onClose, rawMaterialId }) => {
+  const [quantity, setQuantity] = useState('');
 
   const handleSave = (e) => {
-    alert("called")
     e.preventDefault();
-    apiService.createcategory({ name })
+    apiService.updaterawmaterials({"id":rawMaterialId, "quantity":quantity })
       .then(response => {
-        alert('Successful');
-        
-        setName(''); // Clear the input field
-        onClose(); // Optionally close the modal
+        alert(response.data.message);
+        setQuantity(''); // Clear the input field
+        onClose(); // Close the modal
       })
       .catch(error => {
-        alert('Error');
+        alert(error);
       });
   };
 
@@ -29,18 +26,18 @@ const Modal = ({ isVisible, onClose }) => {
     <div className="modal">
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
-        <h2>Update stock</h2>
+        <h2>Update Raw Material Quantity</h2>
         <form onSubmit={handleSave}>
-          <label>quantity</label>
+          <label>Quantity</label>
           <input
             type="number"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required // Optional: add validation to make the field required
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+            required 
           />
           <br />
           <br />
-          <button type="submit" onClick={handleSave}>Add</button>
+          <button type="submit">Update</button>
         </form>
       </div>
     </div>

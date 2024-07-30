@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import './modal.css';
 import apiService from './service/apiService';
+import { useNavigate } from 'react-router-dom';
+
 
 const Modal = ({ isVisible, onClose }) => {
   const [name, setName] = useState('');
   
-
+  const navigate = useNavigate();
   const handleSave = (e) => {
     e.preventDefault();
     apiService.createcategory({ name })
       .then(response => {
-        alert('Successful');
-        
+        if(response.data.message !='Created Successfully'){
+        alert(response.data.message);}
+      else{
+        window.location.href = "/home"
+      }
+  
         setName(''); // Clear the input field
         onClose(); // Optionally close the modal
       })

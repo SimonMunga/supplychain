@@ -15,6 +15,8 @@ const Rawmaterials = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isUpdateVisible, setUpdateModal] = useState(false);
   const [isEditVisible, setEditModal] = useState(false);
+  const [selectedRawMaterialId, setSelectedRawMaterialId] = useState(null);
+
 
 
 
@@ -50,7 +52,8 @@ const Rawmaterials = () => {
     setModalVisible(!isModalVisible);
   };
 
-  const toggleUpdatemodal = () => {
+  const toggleUpdatemodal = (id) => {
+    setSelectedRawMaterialId(id);
     setUpdateModal(!isUpdateVisible);
   };
 
@@ -58,17 +61,7 @@ const Rawmaterials = () => {
     setEditModal(!isEditVisible);
   };
 
-  const addRawMaterial = (material) => {
-    apiService.addRawMaterial(material)
-      .then(response => {
-        setInventory([...inventory, response.data.rawMaterial]);
-        setModalVisible(false);
-      })
-      .catch(error => {
-        alert(error);
-      });
-  };
-
+ 
   return (
     <div className="dashboard-container">
       <aside className="sidebar">
@@ -111,7 +104,7 @@ const Rawmaterials = () => {
               {inventory.map((item, index) => (
                 <tr key={index}>
                   <td>{item.name}</td>
-                  <td>{item.quantity}<button className="update_button" onClick={toggleUpdatemodal}> update </button></td>
+                  <td>{item.quantity}<button className="update_button" onClick={() =>toggleUpdatemodal(item.id)}> update </button></td>
                   <td>${item.price ? item.price.toFixed(2) : 'N/A'}</td>
                   <td>
                     <button className='edit_button'>Edit</button>
@@ -127,6 +120,7 @@ const Rawmaterials = () => {
       <Updatemodal
         onClose={toggleUpdatemodal}
         isVisible={isUpdateVisible}
+        rawMaterialId  ={selectedRawMaterialId}
       />
       
       <EditModal
@@ -137,7 +131,7 @@ const Rawmaterials = () => {
       <AddRawMaterialModal
         onClose={toggleModal}
         isVisible={isModalVisible}
-        onAdd={addRawMaterial}
+       
       />
     </div>
   );
