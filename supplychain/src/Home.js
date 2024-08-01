@@ -106,6 +106,11 @@ const Home = () => {
     setEditModal(!isEditVisible)
 
   };
+  const selectProduct = (item)=>{
+    var url = "/configuration?product=" + encodeURIComponent(item);
+    window.location.href = url;
+
+  }
 
   
 
@@ -117,20 +122,24 @@ const Home = () => {
         </div>
         <nav className="sidebar-nav">
           <ul>
-            <li><Link to="#">Home</Link></li>
+            <li><Link to="#"style={{color:"blue"}}>Home</Link></li>
             <li><Link to="#">Products</Link></li>
             <li><Link to="/rawmaterials">Raw Materials</Link></li>
             <li><Link to="#">Categories</Link></li>
             <li><Link to="#">Suppliers</Link></li>
             <li><Link to="#">Customers</Link></li>
-            <li><Link to="/PurchaseOrders">Purchase Orders</Link></li> 
+            <li><Link to="/PurchaseOrders">Purchase Orders</Link></li>
+            <li><Link to="/admin">Admin</Link></li>  
           </ul>
         </nav>
       </aside>
       <main className="main-content">
         <header className="main-header">
-          <h1>Inventory</h1>
-          <div className="header-buttons">
+          <h1 className ="top-text">user</h1>
+          
+        </header>
+        <div className = "content">
+        <div className="header-buttons">
             <button className="add-button mr-3" onClick={toggleModal}>
               Add New Product
             </button>
@@ -138,8 +147,8 @@ const Home = () => {
               Add Category
             </button>
           </div>
-        </header>
         <section className="inventory-table">
+          
           <table>
             <thead>
               <tr>
@@ -164,7 +173,7 @@ const Home = () => {
                     
                   </td>
                   <td>
-                    <button className="add-button">
+                    <button className="add-button" onClick = {(e) =>selectProduct(item.id, e.preventDefault())}>
                     Configuration
                     </button></td>
                 </tr>
@@ -172,7 +181,9 @@ const Home = () => {
             </tbody>
           </table>
         </section>
+        </div>
       </main>
+      
       <Modal
         isVisible={isModalVisible}
         onClose={toggleModal}
@@ -193,8 +204,10 @@ const Home = () => {
       onClose={toggleEditModal}
       isVisible={isEditVisible}
       />
+      {/* <Configuration
+      product = {product}
 
-      
+      /> */}
     </div>
   );
 };

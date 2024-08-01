@@ -101,24 +101,27 @@ const Rawmaterials = () => {
           <ul>
             <li><Link to="/Home">Home</Link></li>
             <li><Link to="#">Products</Link></li>
-            <li><Link to="/rawmaterials">Raw Materials</Link></li>
+            <li><Link to="/rawmaterials"style={{color:"blue"}}>Raw Materials</Link></li>
             <li><Link to="#">Categories</Link></li>
             <li><Link to="#">Suppliers</Link></li>
             <li><Link to="#">Customers</Link></li>
-            <li><Link to="/PurchaseOrders">Purchase Orders</Link></li> 
+            <li><Link to="/PurchaseOrders">Purchase Orders</Link></li>
+            <li><Link to="/admin">Admin</Link></li> 
           </ul>
         </nav>
       </aside>
       <main className="main-content">
         <header className="main-header">
-          <h1>Raw Materials</h1>
-          <div className="header-buttons">
+          <h1>User</h1>
+          
+        </header>
+        <div className = "content">
+        <div className="header-buttons">
             <button className="add-button mr-3" onClick={toggleModal}>
               Add New Raw Material
             </button>
            
           </div>
-        </header>
         <section className="inventory-table">
             <h3>Raw Materials</h3>
           <table>
@@ -147,6 +150,7 @@ const Rawmaterials = () => {
             </tbody>
           </table>
         </section>
+        </div>
       </main>
     
      

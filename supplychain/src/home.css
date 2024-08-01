@@ -20,6 +20,9 @@ body {
   display: flex;
   flex-direction: column;
 }
+.content{
+  margin:20px
+}
 
 .sidebar-header {
   padding: 20px;
@@ -51,24 +54,31 @@ body {
 
 .main-content {
   margin-left: 240px;
-  padding: 20px;
   width: calc(100% - 240px);
 }
 
 .main-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
 
+  align-items: center;
+  padding: 20px;
+  margin-top:0%;
+  background-color: rgba(22, 0, 63, 0.4);
+  position:relative;
+}
+.top-text{
+  align-items: center;
+  color:#fff
+  
+}
 .main-header h1 {
   margin: 0;
   font-size: 24px;
-  color: #333333;
+  color: #ffffff;
 }
 
 .button-container {
+  margin-bottom:20px;
   display: flex;
   gap: 10px; /* Adjusts spacing between buttons */
 }
@@ -82,12 +92,14 @@ body {
   border-radius: 5px;
   cursor: pointer;
   display: block;
+  margin-bottom:20px;
 }
 .add-product:hover,
 .add-category:hover {
   background-color: #4343c3;
 }
 .inventory-table {
+  margin:20px;
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;

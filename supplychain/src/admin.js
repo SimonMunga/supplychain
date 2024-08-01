@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, {  } from 'react';
 import './home.css';
-import apiService from './service/apiService';
-import { useNavigate } from 'react-router-dom';
-import Modal from './Modal';
-import AddCategoryModal from './AddCategoryModal';
 import './App.css';
-import Updatemodal from './Updatemodal'; 
-import EditModal from './EditModal';
 import { Link } from 'react-router-dom'; 
 
 
-const PurchaseOrders = () => {
+const Admin = () => {
   
 
   // Check token when the component mounts
@@ -40,7 +34,7 @@ const PurchaseOrders = () => {
     <div className="dashboard-container">
       <aside className="sidebar">
         <div className="sidebar-header">
-          <h2>Purchase Order</h2>
+          <h2>Admin</h2>
         </div>
         <nav className="sidebar-nav">
         <ul>
@@ -50,30 +44,27 @@ const PurchaseOrders = () => {
             <li><Link to="#">Categories</Link></li>
             <li><Link to="#">Suppliers</Link></li>
             <li><Link to="#">Customers</Link></li>
-            <li><Link to="/PurchaseOrders" style={{color:"blue"}}>Purchase Orders</Link></li> 
-            <li><Link to="/admin">Admin</Link></li> 
+            <li><Link to="/PurchaseOrders">Purchase Orders</Link></li> 
+            <li><Link to="/admin" style={{color:"blue"}}>Admin</Link></li> 
           </ul>
         </nav>
       </aside>
       <main className="main-content">
         <header className="main-header">
-          <h1>User</h1>
+          <h1>Admin</h1>
           
         </header>
         <div className='content'>
-        <div className="header-buttons">
-            <button className="add-button mr-3">
-              New Purchase Order
-            </button>
-          </div>
 
         <section className="inventory-table">
           <table>
             <thead>
               <tr>
-                <th>PO Number</th>
-                <th>Supplier</th>
-                <th>Date</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Verified</th>
+                <th>Status</th>
+                <th>Remove user</th>
                 
               </tr>
             </thead>
@@ -99,4 +90,4 @@ const PurchaseOrders = () => {
   );
 };
 
-export default PurchaseOrders;
+export default Admin;
