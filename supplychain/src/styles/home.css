@@ -26,8 +26,8 @@ body {
 
 .sidebar-header {
   padding: 20px;
-  background-color: #5151E5;
-  color: #ffffff;
+  background-image: linear-gradient(brown,rgb(252, 215, 5));
+  color: #8bd8f7;
   text-align: center;
 }
 
@@ -59,16 +59,15 @@ body {
 
 .main-header {
   display: flex;
-
-  align-items: center;
+  justify-content: space-between;
   padding: 20px;
   margin-top:0%;
-  background-color: rgba(22, 0, 63, 0.4);
+  background-image: linear-gradient(rgb(79, 42, 165),rgb(203, 5, 252));
   position:relative;
 }
 .top-text{
   align-items: center;
-  color:#fff
+  color:#ffffff
   
 }
 .main-header h1 {

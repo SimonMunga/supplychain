@@ -1,8 +1,8 @@
 import React, {  } from 'react';
-import './home.css';
-import './App.css';
+import '../styles/home.css';
+import '../styles/App.css';
 import { Link } from 'react-router-dom'; 
-import apiService from './service/apiService';
+import apiService from '../service/apiService';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -35,7 +35,7 @@ else{
     return ( <div className="dashboard-container">
       <aside className="sidebar">
         <div className="sidebar-header">
-          <h2>Configuration</h2>
+          <h2>Supply Chain</h2>
         </div>
         <nav className="sidebar-nav">
           <ul>

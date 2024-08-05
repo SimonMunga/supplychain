@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
-import RegistrationForm from './RegistrationForm';
-import OtpVerificationForm from './OtpVerificationForm';
-import LoginPage from './LoginPage';
-import Home from './Home';
-import PurchaseOrders from './PurchaseOrders';
-import Rawmaterials from './rawmaterials';
-import Configuration from './configuration';
-import Admin from "./admin"
+import './styles/App.css';
+import RegistrationForm from './pages/RegistrationForm';
+import OtpVerificationForm from './pages/OtpVerificationForm';
+import LoginPage from './pages/LoginPage';
+import Home from './pages/Home';
+import PurchaseOrders from './pages/PurchaseOrders';
+import Rawmaterials from './pages/rawmaterials';
+import Configuration from './pages/configuration';
+import Admin from "./pages/admin"
 
 
 

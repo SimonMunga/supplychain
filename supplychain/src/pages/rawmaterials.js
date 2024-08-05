@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './home.css';
-import apiService from './service/apiService';
+import '../styles/home.css';
+import apiService from '../service/apiService';
 import { useNavigate } from 'react-router-dom';
-import Modal from './Modal';
-import './App.css';
+import '../styles/App.css';
 import Updatemodal from './Updatemodal';
 import EditModal from './EditModal';
 import { Link } from 'react-router-dom';
@@ -73,7 +72,7 @@ const Rawmaterials = () => {
     <div className="dashboard-container">
       <aside className="sidebar">
         <div className="sidebar-header">
-          <h2>Home</h2>
+          <h2>Supply Chain</h2>
         </div>
         <nav className="sidebar-nav">
           <ul>
@@ -90,7 +89,8 @@ const Rawmaterials = () => {
       </aside>
       <main className="main-content">
         <header className="main-header">
-          <h1>User</h1>
+          <h1><i className="fas fa-cogs"></i>  Raw Materials</h1>
+          <h1>Username</h1>
           
         </header>
         <div className = "content">

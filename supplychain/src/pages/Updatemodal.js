@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './modal.css';
-import apiService from './service/apiService';
+import '../styles/modal.css';
+import apiService from '../service/apiService';
 
 const Modal = ({ isVisible, onClose }) => {
   const [name, setName] = useState('');
@@ -29,21 +29,11 @@ const Modal = ({ isVisible, onClose }) => {
     <div className="modal">
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
-        <h2>Edit name </h2>
+        <h2>Update stock</h2>
         <form onSubmit={handleSave}>
-          <label>Name:</label>
+          <label>quantity</label>
           <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required // Optional: add validation to make the field required
-          />
-          <h2>Edit price </h2>
-          </form>
-        <form onSubmit={handleSave}>
-          <label>:</label>
-          <input
-            type="text"
+            type="number"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required // Optional: add validation to make the field required

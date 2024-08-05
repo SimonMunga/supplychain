@@ -1,10 +1,10 @@
 import React, {  } from 'react';
-import './home.css';
-import './App.css';
+import '../styles/home.css';
+import '../styles/App.css';
 import { Link } from 'react-router-dom'; 
 
 
-const Admin = () => {
+const PurchaseOrders = () => {
   
 
   // Check token when the component mounts
@@ -34,7 +34,7 @@ const Admin = () => {
     <div className="dashboard-container">
       <aside className="sidebar">
         <div className="sidebar-header">
-          <h2>Admin</h2>
+          <h2>Supply Chain</h2>
         </div>
         <nav className="sidebar-nav">
         <ul>
@@ -44,27 +44,31 @@ const Admin = () => {
             <li><Link to="#">Categories</Link></li>
             <li><Link to="#">Suppliers</Link></li>
             <li><Link to="#">Customers</Link></li>
-            <li><Link to="/PurchaseOrders">Purchase Orders</Link></li> 
-            <li><Link to="/admin" style={{color:"blue"}}>Admin</Link></li> 
+            <li><Link to="/PurchaseOrders" style={{color:"blue"}}>Purchase Orders</Link></li> 
+            <li><Link to="/admin">Admin</Link></li> 
           </ul>
         </nav>
       </aside>
       <main className="main-content">
         <header className="main-header">
-          <h1>Admin</h1>
+          <h1><i className="fas fa-receipt"></i>  Purchase Orders</h1>
+          <h1>Username</h1>
           
         </header>
         <div className='content'>
+        <div className="header-buttons">
+            <button className="add-button mr-3">
+              New Purchase Order
+            </button>
+          </div>
 
         <section className="inventory-table">
           <table>
             <thead>
               <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Verified</th>
-                <th>Status</th>
-                <th>Remove user</th>
+                <th>PO Number</th>
+                <th>Supplier</th>
+                <th>Date</th>
                 
               </tr>
             </thead>
@@ -90,4 +94,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default PurchaseOrders;

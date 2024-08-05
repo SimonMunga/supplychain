@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './home.css';
-import apiService from './service/apiService';
+import '../styles/home.css';
+import apiService from '../service/apiService';
 import { useNavigate } from 'react-router-dom';
 import Modal from './Modal';
 import AddCategoryModal from './AddCategoryModal';
-import './App.css';
+import '../styles/App.css';
 import Updatemodal from './Updatemodal'; 
 import EditModal from './EditModal';
 import { Link } from 'react-router-dom'; 
@@ -34,26 +34,28 @@ const Home = () => {
   // }, [navigate]);
 
   // Fetch products and categories from the API when the component mounts
+  const fetchProducts = async () => {
+    try {
+      const response = await apiService.getProducts();
+      setInventory(response.data.products);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      // Handle the error appropriately
+    }
+  };
+  const fetchCategories = async () => {
+    try{
+      const response = await apiService.getcategories();
+      setCategories(response.data.categories)
+    }catch (error){
+      console.error('error in fetching categories',error)
+    }
+  }
+  
   useEffect(() => {
-    apiService.getproducts()
-      .then(response => {
-        console.log(response.data.products);
-        setInventory(response.data.products);
-      })
-      .catch(error => {
-        alert(error.response ? error.response.data.message : 'Error fetching products');
-        console.error('Error fetching products:', error);
-      });
+    fetchProducts();
 
-    apiService.getcategories()
-      .then(response => {
-        console.log(response.data.categories);
-        setCategories(response.data.categories);
-      })
-      .catch(error => {
-        alert(error.response ? error.response.data.message : 'Error fetching categories');
-        console.error('Error fetching categories:', error);
-      });
+    fetchCategories();
   }, []);
 
   // Function to delete an inventory item by id
@@ -86,7 +88,7 @@ const Home = () => {
     <div className="dashboard-container">
       <aside className="sidebar">
         <div className="sidebar-header">
-          <h2>Home</h2>
+          <h2>Supply Chain</h2>
         </div>
         <nav className="sidebar-nav">
           <ul>
@@ -103,7 +105,9 @@ const Home = () => {
       </aside>
       <main className="main-content">
         <header className="main-header">
-          <h1 className="top-text">User</h1>
+          <h1 className="top-text"><i className="fas fa-home"></i>  Home</h1>
+          <h1 className="top-text">Username</h1>
+
         </header>
         <div className="content">
           <div className="header-buttons">

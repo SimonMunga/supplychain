@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import './rawmaterialsmodal.css'; 
-import apiService from './service/apiService';
+import '../styles/rawmaterialsmodal.css';
+import '../styles/home.css'
+import apiService from '../service/apiService';
 
 const AddRawMaterialModal = ({ isVisible, onClose, onAdd }) => {
   const [name, setName] = useState('');
