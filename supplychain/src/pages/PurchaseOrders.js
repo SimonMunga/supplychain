@@ -39,7 +39,7 @@ const PurchaseOrders = () => {
         <nav className="sidebar-nav">
         <ul>
             <li><Link to="/home">Home</Link></li>
-            <li><Link to="#">Products</Link></li>
+            <li><Link to="/products">Products</Link></li>
             <li><Link to="/rawmaterials">Raw Materials</Link></li>
             <li><Link to="#">Categories</Link></li>
             <li><Link to="#">Suppliers</Link></li>

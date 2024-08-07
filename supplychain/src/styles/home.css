@@ -21,7 +21,8 @@ body {
   flex-direction: column;
 }
 .content{
-  margin:20px
+  margin:20px;
+  
 }
 
 .sidebar-header {
@@ -62,8 +63,10 @@ body {
   justify-content: space-between;
   padding: 20px;
   margin-top:0%;
-  background-image: linear-gradient(rgb(79, 42, 165),rgb(203, 5, 252));
+  background-image: linear-gradient(rgb(7, 193, 250),rgb(133, 5, 252));
   position:relative;
+  width: 100%;
+  position:static;
 }
 .top-text{
   align-items: center;
@@ -103,6 +106,9 @@ body {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-width:80%;
+  overflow:scroll;
+  scroll-behavior: auto;
 }
 .inventory-table table {
   width: 100%;

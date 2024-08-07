@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/home.css';
 import apiService from '../service/apiService';
 import { useNavigate } from 'react-router-dom';
 import '../styles/App.css';
-import Updatemodal from './Updatemodal';
-import EditModal from './EditModal';
+import Updatemodal from '../components/Updatemodal';
+import EditModal from '../components/EditModal';
 import { Link } from 'react-router-dom';
-import AddRawMaterialModal from './rawmaterialsmodal'; // Import the new modal
+import AddRawMaterialModal from '../components/rawmaterialsmodal'; // Import the new modal
 
 const Rawmaterials = () => {
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ const Rawmaterials = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isUpdateVisible, setUpdateModal] = useState(false);
   const [isEditVisible, setEditModal] = useState(false);
-
+  const [rawMaterial, setRawMaterial] = useState('');
 
 
   useEffect(() => {
@@ -49,24 +48,16 @@ const Rawmaterials = () => {
     setModalVisible(!isModalVisible);
   };
 
-  const toggleUpdatemodal = () => {
+  const toggleUpdatemodal = (item) => {
     setUpdateModal(!isUpdateVisible);
+    setRawMaterial(item)
   };
 
   const toggleEditModal = () => {
     setEditModal(!isEditVisible);
   };
-
-  const addRawMaterial = (material) => {
-    apiService.addRawMaterial(material)
-      .then(response => {
-        setInventory([...inventory, response.data.rawMaterial]);
-        setModalVisible(false);
-      })
-      .catch(error => {
-        alert(error);
-      });
-  };
+  
+  
 
   return (
     <div className="dashboard-container">
@@ -77,7 +68,7 @@ const Rawmaterials = () => {
         <nav className="sidebar-nav">
           <ul>
             <li><Link to="/Home">Home</Link></li>
-            <li><Link to="#">Products</Link></li>
+            <li><Link to="/products">Products</Link></li>
             <li><Link to="/rawmaterials"style={{color:"blue"}}>Raw Materials</Link></li>
             <li><Link to="#">Categories</Link></li>
             <li><Link to="#">Suppliers</Link></li>
@@ -114,7 +105,7 @@ const Rawmaterials = () => {
               {inventory.map((item, index) => (
                 <tr key={index}>
                   <td>{item.name}</td>
-                  <td>{item.quantity}<button className="update_button" onClick={toggleUpdatemodal}> update </button></td>
+                  <td>{item.quantity}<button className="update_button" onClick={() => toggleUpdatemodal(item.id)}> update </button></td>
                   <td>${item.price ? item.price.toFixed(2) : 'N/A'}</td>
                   <td>
                     <button className='edit_button'>Edit</button>
@@ -131,6 +122,8 @@ const Rawmaterials = () => {
       <Updatemodal
         onClose={toggleUpdatemodal}
         isVisible={isUpdateVisible}
+        item = {rawMaterial}
+        
       />
       
       <EditModal
@@ -141,7 +134,6 @@ const Rawmaterials = () => {
       <AddRawMaterialModal
         onClose={toggleModal}
         isVisible={isModalVisible}
-        onAdd={addRawMaterial}
       />
     </div>
   );
