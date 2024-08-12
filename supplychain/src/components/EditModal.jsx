@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD:supplychain/src/AddCategoryModal.js
-import './modal.css';
-import apiService from './service/apiService';
-import { useNavigate } from 'react-router-dom';
-
-=======
 import '../styles/modal.css';
 import apiService from '../service/apiService';
->>>>>>> 83f4626eac45926fa8e68b01f6f794eb58836c83:supplychain/src/components/EditModal.jsx
 
 const Modal = ({ isVisible, onClose }) => {
   const [name, setName] = useState('');

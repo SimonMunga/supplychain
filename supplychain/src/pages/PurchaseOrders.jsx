@@ -1,18 +1,6 @@
-<<<<<<< HEAD:supplychain/src/PurchaseOrders.js
-import React, { useState, useEffect } from 'react';
-import './home.css';
-// import apiService from './service/apiService';
-// import { useNavigate } from 'react-router-dom';
-// import Modal from './Modal';
-// import AddCategoryModal from './AddCategoryModal';
-import './App.css';
-//import Updatemodal from './Updatemodal'; 
-// import EditModal from './EditModal';
-=======
 import React, {useState  } from 'react';
 import '../styles/home.css';
 import '../styles/App.css';
->>>>>>> 83f4626eac45926fa8e68b01f6f794eb58836c83:supplychain/src/pages/PurchaseOrders.jsx
 import { Link } from 'react-router-dom'; 
 import Aside from '../components/Aside';
 

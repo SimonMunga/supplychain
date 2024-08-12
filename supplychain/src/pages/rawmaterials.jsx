@@ -15,16 +15,11 @@ const Rawmaterials = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isUpdateVisible, setUpdateModal] = useState(false);
   const [isEditVisible, setEditModal] = useState(false);
-<<<<<<< HEAD:supplychain/src/rawmaterials.js
-  const [selectedRawMaterialId, setSelectedRawMaterialId] = useState(null);
-
-=======
   const [rawMaterial, setRawMaterial] = useState('');
   const [isNavVisible, setNavVisible] = useState(true);
   const toggleNavbar = () => {
     setNavVisible(!isNavVisible);
 };
->>>>>>> 83f4626eac45926fa8e68b01f6f794eb58836c83:supplychain/src/pages/rawmaterials.jsx
 
  
   useEffect(() => {
@@ -60,12 +55,7 @@ const Rawmaterials = () => {
     setModalVisible(!isModalVisible);
   };
 
-<<<<<<< HEAD:supplychain/src/rawmaterials.js
-  const toggleUpdatemodal = (id) => {
-    setSelectedRawMaterialId(id);
-=======
   const toggleUpdatemodal = (item) => {
->>>>>>> 83f4626eac45926fa8e68b01f6f794eb58836c83:supplychain/src/pages/rawmaterials.jsx
     setUpdateModal(!isUpdateVisible);
     setRawMaterial(item)
   };
@@ -73,14 +63,9 @@ const Rawmaterials = () => {
   const toggleEditModal = () => {
     setEditModal(!isEditVisible);
   };
-<<<<<<< HEAD:supplychain/src/rawmaterials.js
-
- 
-=======
   
   
 
->>>>>>> 83f4626eac45926fa8e68b01f6f794eb58836c83:supplychain/src/pages/rawmaterials.jsx
   return (
     <div className="dashboard-container">
       <Aside
@@ -118,11 +103,7 @@ const Rawmaterials = () => {
               {inventory.map((item, index) => (
                 <tr key={index}>
                   <td>{item.name}</td>
-<<<<<<< HEAD:supplychain/src/rawmaterials.js
-                  <td>{item.quantity}<button className="update_button" onClick={() =>toggleUpdatemodal(item.id)}> update </button></td>
-=======
                   <td>{item.quantity}<button className="update_button" onClick={() => toggleUpdatemodal(item.id)}> update </button></td>
->>>>>>> 83f4626eac45926fa8e68b01f6f794eb58836c83:supplychain/src/pages/rawmaterials.jsx
                   <td>${item.price ? item.price.toFixed(2) : 'N/A'}</td>
                   <td>
                     <button className='edit_button'>Edit</button>
@@ -139,12 +120,8 @@ const Rawmaterials = () => {
       <Updatemodal
         onClose={toggleUpdatemodal}
         isVisible={isUpdateVisible}
-<<<<<<< HEAD:supplychain/src/rawmaterials.js
-        rawMaterialId  ={selectedRawMaterialId}
-=======
         item = {rawMaterial}
         
->>>>>>> 83f4626eac45926fa8e68b01f6f794eb58836c83:supplychain/src/pages/rawmaterials.jsx
       />
       
       <EditModal
@@ -155,10 +132,6 @@ const Rawmaterials = () => {
       <AddRawMaterialModal
         onClose={toggleModal}
         isVisible={isModalVisible}
-<<<<<<< HEAD:supplychain/src/rawmaterials.js
-       
-=======
->>>>>>> 83f4626eac45926fa8e68b01f6f794eb58836c83:supplychain/src/pages/rawmaterials.jsx
       />
     </div>
   );
