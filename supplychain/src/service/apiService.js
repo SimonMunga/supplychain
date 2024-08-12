@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Rawmaterials from '../rawmaterials';
 
-const API_URL = 'http://192.168.254.61:8080'; // Adjust the URL based on your backend
+const API_URL = 'http://192.168.254.85:8080'; // Adjust the URL based on your backend
 const token = localStorage.getItem('token');
 if (!token) {
     console.log('No token found');
@@ -14,6 +14,11 @@ const config = {
     },
 };
 const apiService = {
+    getProductRawMaterials: (product) => {
+        console.log("id: "+product)
+       return  axios.get(`${API_URL}/rawmaterialproportion/getbyproduct/${product}`);
+       
+    },
     getAllUsers: () => axios.get(`${API_URL}/users`),
     getUserById: (id) => axios.get(`${API_URL}/users/${id}`),
     createUser: (user) => axios.post(`${API_URL}/users/create`, user),
@@ -29,8 +34,6 @@ const apiService = {
     deleterawmaterials:(id) => axios.delete(`${API_URL}/rawmaterials/${id}`),
     updaterawmaterials:(stock) => axios.post(`${API_URL}/rawmaterials/updatestock`,stock),
     getproducts: () => {
-       
-
         return axios.get(`${API_URL}/products/all`);
     },
 

@@ -6,7 +6,9 @@ import OtpVerificationForm from './OtpVerificationForm';
 import LoginPage from './LoginPage';
 import Home from './Home';
 import PurchaseOrders from './PurchaseOrders';
-import Rawmaterials from './rawmaterials'
+import Rawmaterials from './rawmaterials';
+import Configuration from './configuration';
+import Admin from "./admin"
 
 
 
@@ -18,10 +20,12 @@ function App() {
           <Routes>
             <Route path="/register" element={<RegistrationForm />} />
             <Route path="/otpverification" element={<OtpVerificationForm />} />
-            <Route path="/login" element={<LoginPage/>} />
+            <Route path="" element={<LoginPage/>} />
             <Route path="/Home" element={<Home/>} />
             <Route path='/PurchaseOrders' element={<PurchaseOrders/>} />
             <Route path='/rawmaterials' element= {<Rawmaterials/>}/>
+            <Route path='/configuration' element={<Configuration/>}/>
+            <Route path = "/admin" element={<Admin/>}/>
             
           </Routes>
         </header>
