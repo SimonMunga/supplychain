@@ -64,6 +64,7 @@ const PurchaseOrders = () => {
                 <th>PO Number</th>
                 <th>Supplier</th>
                 <th>Date</th>
+                <th>Status</th>
                 
               </tr>
             </thead>
