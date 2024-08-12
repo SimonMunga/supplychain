@@ -33,16 +33,12 @@ const Modal = ({ isVisible, onClose,item }) => {
         <div className="form-group">
         <label htmlFor="price">Quantity:</label><br/>
           <input
+          className="form-control"
             type="number"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
             required // Optional: add validation to make the field required
           />
-          </div>
-          <div className="d-flex">
-          <button type="button" className="btn btn-warning m-3" onClick={onClose}>Close</button>
-          <button type="submit" className="btn btn-secondary m-3"onClick={handleSave}>Update</button>
-          </div>
           <div>
             <p style={{color:"blue"}}>
               The quantity you enter<br/>
@@ -50,6 +46,12 @@ const Modal = ({ isVisible, onClose,item }) => {
               directly to the existing item quantity
             </p>
           </div>
+          </div>
+          <div className="d-flex">
+          <button type="button" className="btn btn-warning m-3" onClick={onClose}>Close</button>
+          <button type="submit" className="btn btn-secondary m-3"onClick={handleSave}>Update</button>
+          </div>
+          
         </form>
       </div>
     </div>

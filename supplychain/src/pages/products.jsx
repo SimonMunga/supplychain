@@ -7,10 +7,10 @@ import AddCategoryModal from '../components/AddCategoryModal';
 import '../styles/App.css';
 import Updatemodal from '../components/Updatemodal'; 
 import EditModal from '../components/EditModal';
+import { Link } from 'react-router-dom'; 
+import Aside from '../components/Aside';
 
-
-
-const Home = () => {
+const Products = () => {
   const navigate = useNavigate();
   const [inventory, setInventory] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -18,7 +18,10 @@ const Home = () => {
   const [isCategoryModalVisible, setCategoryModalVisible] = useState(false);
   const [isUpdateVisible, setUpdateModal] = useState(false);
   const [isEditVisible, setEditModal] = useState(false);
-
+  const [isNavVisible, setNavVisible] = useState(true);
+  const toggleNavbar = () => {
+    setNavVisible(!isNavVisible);
+};
   // Check token when the component mounts
   // useEffect(() => {
   //   apiService.checktoken(localStorage.getItem('token'))
@@ -103,57 +106,21 @@ const Home = () => {
     
     <div className="dashboard-container">
      
-
+     <Aside
+      isNavVisible={isNavVisible}
+      />
       <main className="main-content">
-        <header className="main-header">
+      <header className="main-header">
+          <div className='d-flex'>
+          <button className="toggle-btn mr-2" onClick={toggleNavbar}>
+          <i style={{color:"aqua"}}className="fa-solid fa-bars"></i>
+          </button>
           <h1 className="top-text"><i className="fas fa-home"></i>  Home</h1>
+          </div>
           <h1 className="top-text">Username</h1>
 
         </header>
-        <div className="content">
-          <div className="container d-flex justify-between mb-4">
-          <div className="card"style ={{width:"18rem"}}>
-            <div className="card-header">
-              Customer Orders
-            </div>
-            <div className='card-body'>
-              <p>customer name<span>---</span></p>
-              <p>Customer name<span>---</span></p>
-              <p>Customer name<span>----</span></p>
-              <div className="d-flex">
-                <button className="btn btn-primary w-auto">Manage</button>
-              </div>
-            </div>
-          </div>
-          <div className="card" style ={{width:"18rem"}}>
-            <div className="card-header">
-              Last Production
-            </div>
-            <div className='card-body'>
-              <p>Product:<span>---</span></p>
-              <p>quantity:<span>---</span></p>
-              <p>date:<span>----</span></p>
-              <div className="d-flex">
-                <button className="btn btn-warning w-auto">view</button>
-              </div>
-            </div>
-          </div>
-          
-          <div className="card" style ={{width:"18rem"}}>
-            <div className="card-header">
-              Recent Purchase order
-            </div>
-            <div className='card-body'>
-              <p>PO Number:<span>---</span></p>
-              <p>Supplier<span>---</span></p>
-              <p>Date:<span>----</span></p>
-              <div className="d-flex">
-                <button className="btn btn-warning w-auto">view</button>
-              </div>
-            </div>
-          </div>
-          </div>
-          
+        <div className="content">      
           <section className="inventory-table">
           <div className="header-buttons">
             <button className="add-button mr-3" onClick={openModal}>
@@ -221,4 +188,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Products;

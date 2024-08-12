@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/home.css';
 import '../styles/App.css';
-import { Link } from 'react-router-dom';
 import apiService from '../service/apiService';
 import { useNavigate } from 'react-router-dom';
-import RawMaterialProportionModal from "../components/rawMaterialProportionModal"
+import RawMaterialProportionModal from "../components/rawMaterialProportionModal";
+import Aside from '../components/Aside';
+import RawMaterialProportionService from '../service/RawMaterialProportionService';
+
 
 const Configuration = () => {
   const navigate = useNavigate();
@@ -15,12 +17,18 @@ const Configuration = () => {
   const [productName, setProductName] = useState('');
   const [price, setPrice] = useState('');
   const [isSaveEnabled, setIsSaveEnabled] = useState(false);
+  const [newProportionModal, setNewProportionModal] = useState(false)
+  const [isNavVisible, setNavVisible] = useState(true);
+  const toggleNavbar = () => {
+    setNavVisible(!isNavVisible);
+};
+
 
   const getItems = () => {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const item = urlParams.get('product');
-  const [newProportionModal, setNewProportionModal] = useState(false)
+  
 
     if (item) {
       apiService.getProductRawMaterials(item)
@@ -51,6 +59,15 @@ const Configuration = () => {
   useEffect(() => {
     getItems();
   }, []);
+  const deleteRawMaterialProportion = async (id) =>{
+    try{
+  const response = await RawMaterialProportionService.deleteRawMaterialProportion(id) 
+  alert(response.data)
+  window.location.reload()
+    }catch(error){
+      alert(error)
+    }
+  }
   //create new proportion
   const toggleNewProportion = () => {
     setNewProportionModal(true)
@@ -63,7 +80,9 @@ const Configuration = () => {
   const handlePriceChange = (e) => {
     setPrice(e.target.value);
   };
-
+  const closeProportionModal = () =>{
+    setNewProportionModal(false)
+  }
   // Enable/Disable save button based on input changes
   const updateProduct = async () => {
     var item = {"id":product.id, "price":price,"name":productName}
@@ -93,27 +112,19 @@ const Configuration = () => {
 
   return (
     <div className="dashboard-container">
-      <aside className="sidebar">
-        <div className="sidebar-header">
-          <h2>Supply Chain</h2>
-        </div>
-        <nav className="sidebar-nav">
-          <ul>
-            <li><Link to="/home">Home</Link></li>
-            <li><Link to="/products" style={{ color: "blue" }}>Products</Link></li>
-            <li><Link to="/rawmaterials">Raw Materials</Link></li>
-            <li><Link to="#">Categories</Link></li>
-            <li><Link to="#">Suppliers</Link></li>
-            <li><Link to="#">Customers</Link></li>
-            <li><Link to="/PurchaseOrders">Purchase Orders</Link></li>
-            <li><Link to="/admin">Admin</Link></li>
-          </ul>
-        </nav>
-      </aside>
+       <Aside
+      isNavVisible={isNavVisible}
+      />
       <main className="main-content">
-        <header className="main-header">
-          <h2 className='top-text'>Product Configuration</h2>
-          <h2 className='top-text'>Username</h2>
+      <header className="main-header">
+          <div className='d-flex'>
+          <button className="toggle-btn mr-2" onClick={toggleNavbar}>
+          <i style={{color:"aqua"}}className="fa-solid fa-bars"></i>
+          </button>
+          <h1 className="top-text"><i className="fas fa-edit"></i>  Configurations</h1>
+          </div>
+          <h1 className="top-text">Username</h1>
+
         </header>
         <div className='content'>
           <div className='container'>
@@ -181,7 +192,7 @@ const Configuration = () => {
                       disabled
                       aria-label="Category"
                       aria-describedby="basic-addon1"
-                    />
+                    />  ``
                   </div>
                 </li>
                 <li className="list-group-item">
@@ -207,6 +218,7 @@ const Configuration = () => {
               </table>
             </div>
             </div>
+            </div>
             <div className="card mt-4 p-2">
               <div className='flex-end p-3'>
                 <button onClick={toggleNewProportion}className="btn btn-primary">Add new Proportion</button>
@@ -230,18 +242,20 @@ const Configuration = () => {
                       <td>{item.propotion}</td>
                       <td>{item.rawMaterial.quantity}</td>
                       <td><button className="btn btn-primary">Edit</button></td>
-                      <td><button className="btn btn-warning">Remove</button></td>
+                      <td><button onClick={()=>deleteRawMaterialProportion(item.id)}className="btn btn-warning">Remove</button></td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-          </div>
+         
         </div>
       </main>
       <RawMaterialProportionModal
-isVisible = {newProportionModal}
-/>
+      isVisible = {newProportionModal}
+      onClose ={closeProportionModal}
+      item = {product.id}
+      />
 
     </div>
   );

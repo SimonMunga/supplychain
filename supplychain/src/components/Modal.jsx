@@ -39,12 +39,12 @@ const Modal = ({onClose,categories}) => {
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
           <br />
           <label>Price</label>
-                <div class="input-group mb-3">
+                <div className="input-group mb-3">
                 <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
                 </div>
           <br />
           <label>Category:</label>
-          <div class="input-group mb-3">
+          <div className="input-group mb-3">
           <select onChange={(e) => setCategory(e.target.value)}>
             <option  selected disabled>Select a Category</option>
             {categories.map((cat, index) => (
