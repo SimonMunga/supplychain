@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Rawmaterials from '../rawmaterials';
 
-const API_URL = 'http://192.168.254.85:8080'; // Adjust the URL based on your backend
+const API_URL = 'http://192.168.254.77:8080'; // Adjust the URL based on your backend
 const token = localStorage.getItem('token');
 if (!token) {
     console.log('No token found');
