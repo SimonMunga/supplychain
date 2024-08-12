@@ -1,3 +1,4 @@
+<<<<<<< HEAD:supplychain/src/PurchaseOrders.js
 import React, { useState, useEffect } from 'react';
 import './home.css';
 // import apiService from './service/apiService';
@@ -7,11 +8,20 @@ import './home.css';
 import './App.css';
 //import Updatemodal from './Updatemodal'; 
 // import EditModal from './EditModal';
+=======
+import React, {useState  } from 'react';
+import '../styles/home.css';
+import '../styles/App.css';
+>>>>>>> 83f4626eac45926fa8e68b01f6f794eb58836c83:supplychain/src/pages/PurchaseOrders.jsx
 import { Link } from 'react-router-dom'; 
+import Aside from '../components/Aside';
 
 
 const PurchaseOrders = () => {
-  
+  const [isNavVisible, setNavVisible] = useState(true);
+  const toggleNavbar = () => {
+    setNavVisible(!isNavVisible);
+};
 
   // Check token when the component mounts
   // useEffect(() => {
@@ -38,27 +48,19 @@ const PurchaseOrders = () => {
 
   return (
     <div className="dashboard-container">
-      <aside className="sidebar">
-        <div className="sidebar-header">
-          <h2>Purchase Order</h2>
-        </div>
-        <nav className="sidebar-nav">
-        <ul>
-            <li><Link to="/home">Home</Link></li>
-            <li><Link to="#">Products</Link></li>
-            <li><Link to="/rawmaterials">Raw Materials</Link></li>
-            <li><Link to="#">Categories</Link></li>
-            <li><Link to="#">Suppliers</Link></li>
-            <li><Link to="#">Customers</Link></li>
-            <li><Link to="/PurchaseOrders" style={{color:"blue"}}>Purchase Orders</Link></li> 
-            <li><Link to="/admin">Admin</Link></li> 
-          </ul>
-        </nav>
-      </aside>
+       <Aside
+      isNavVisible={isNavVisible}
+      />
       <main className="main-content">
-        <header className="main-header">
-          <h1>User</h1>
-          
+      <header className="main-header">
+          <div className='d-flex'>
+          <button className="toggle-btn mr-2" onClick={toggleNavbar}>
+          <i style={{color:"aqua"}}className="fa-solid fa-bars"></i>
+          </button>
+          <h1 className="top-text"><i className="fas fa-home"></i>  Purchase Orders</h1>
+          </div>
+          <h1 className="top-text">Username</h1>
+
         </header>
         <div className='content'>
         <div className="header-buttons">

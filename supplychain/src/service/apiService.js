@@ -1,18 +1,21 @@
 import axios from 'axios';
-import Rawmaterials from '../rawmaterials';
 
+<<<<<<< HEAD
 const API_URL = 'http://192.168.254.77:8080'; // Adjust the URL based on your backend
+=======
+const API_URL = 'http://127.0.0.1:8080'; // Adjust the URL based on your backend
+>>>>>>> 83f4626eac45926fa8e68b01f6f794eb58836c83
 const token = localStorage.getItem('token');
 if (!token) {
     console.log('No token found');
 }
 
-const config = {
-    headers: {
-        'Bearer': token,
-        'Content-Type': 'application/json', 
-    },
-};
+// const config = {
+//     headers: {
+//         'Bearer': token,
+//         'Content-Type': 'application/json', 
+//     },
+// };
 const apiService = {
     getProductRawMaterials: (product) => {
         console.log("id: "+product)
@@ -32,6 +35,7 @@ const apiService = {
     getRawMaterials:() => axios.get(`${API_URL}/rawmaterials/all`),
     createRawMaterials:(rawMaterial) => axios.post(`${API_URL}/rawmaterials/create`,rawMaterial),
     deleterawmaterials:(id) => axios.delete(`${API_URL}/rawmaterials/${id}`),
+<<<<<<< HEAD
     updaterawmaterials:(stock) => axios.post(`${API_URL}/rawmaterials/updatestock`,stock),
     getproducts: () => {
         return axios.get(`${API_URL}/products/all`);
@@ -42,5 +46,17 @@ const apiService = {
         return axios.get(`${API_URL}/categories/all`);
     }
 };
+=======
+    getProducts: () => axios.get(`${API_URL}/products/all`),
+    getcategories: () => axios.get(`${API_URL}/categories/all`),
+    getPurchaseOrders: () => axios.get(`${API_URL}/purchaseorders/all`),
+    getProductById: (id) => axios.get(`${API_URL}/products/${id}`),
+    updateRawMaterialStock: (body) => axios.post(`${API_URL}/rawmaterials/updatestock`,body),
+    updateProduct: (body) => axios.post(`${API_URL}/products/edit`,body),
+    createRawMaterialProportion: (body) => axios.post(`${API_URL}/rawmaterialproportion/create`,body),
+    deleteRawMaterialProportion: (id) => axios.delete(`${API_URL}/rawmaterialproportion/${id}`),
+    createProduction: (body) => axios.post(`${API_URL}/production/create`,body)
+}
+>>>>>>> 83f4626eac45926fa8e68b01f6f794eb58836c83
 
 export default apiService;
