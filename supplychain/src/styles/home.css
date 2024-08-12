@@ -3,72 +3,46 @@ body {
   background-color: #f4f5f7;
   margin: 0;
   padding: 0;
+ 
+  width:100%;
+ 
 }
 
 .dashboard-container {
-  display: flex;
+ display: flex;
+
 }
 
-.sidebar {
-  width: 240px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-}
 .content{
-  margin:20px
+  margin-top:100px;
+  overflow-x:hidden;
+  margin-left: 20px;
+ 
 }
 
-.sidebar-header {
-  padding: 20px;
-  background-color: #5151E5;
-  color: #ffffff;
-  text-align: center;
-}
 
-.sidebar-nav {
-  flex-grow: 1;
-  padding: 20px;
-}
-
-.sidebar-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar-nav ul li {
-  padding: 10px 0;
-  cursor: pointer;
-  color: #555555;
-}
-
-.sidebar-nav ul li:hover {
-  color: #5151E5;
-}
 
 .main-content {
-  margin-left: 240px;
-  width: calc(100% - 240px);
+  width:100%;
+  flex: 4;
+  
+  
+
 }
 
 .main-header {
+  z-index:5;
   display: flex;
-
-  align-items: center;
+  justify-content: space-between;
   padding: 20px;
   margin-top:0%;
-  background-color: rgba(22, 0, 63, 0.4);
-  position:relative;
+  background-image: linear-gradient(rgb(42, 65, 165),rgb(5, 161, 252));
+  position:fixed;
+  width: 80%;
 }
 .top-text{
   align-items: center;
-  color:#fff
+  color:#ffffff
   
 }
 .main-header h1 {
@@ -99,11 +73,15 @@ body {
   background-color: #4343c3;
 }
 .inventory-table {
-  margin:20px;
+  margin: 20px;
   background-color: #ffffff;
-  padding: 20px;
+  padding: 15px; /* Remove padding to prevent extra space */
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Make sure it takes up the full width */
+  max-height: 400px; /* Adjust height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
 }
 .inventory-table table {
   width: 100%;

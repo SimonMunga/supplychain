@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import apiService from './service/apiService';
+import apiService from '../service/apiService';
+import "../styles/modal.css"
 
 
-
-const Modal = ({ isVisible, onClose,categories}) => {
+const Modal = ({onClose,categories}) => {
   const [name, setName] = useState('');
   // const [categories, setcategories] = useState('');
-  const [category, setCategory]= useState('')
+  const [category, setCategory]= useState([])
   const [price, setPrice] = useState('')
   
   const handleSave = () => {
@@ -14,9 +14,9 @@ const Modal = ({ isVisible, onClose,categories}) => {
     
     apiService.createProduct({"name":name,"price":price,"category":category})
     .then (response => {
-      alert("success")
+      
   
-      window.location.href=window.location.href
+      window.location.reload()
 
 
     })
@@ -26,15 +26,12 @@ const Modal = ({ isVisible, onClose,categories}) => {
     onClose();
   };
 
-  if (!isVisible) {
-    return null;
-  }
-if(isVisible){
-  
-}
+ 
+
   return (
-    <div className="modal">
-      <div className="modal-content">
+    <div className="modal-overlay-product">
+
+      <div className="modalProduct">
         <span className="close" onClick={onClose}>&times;</span>
         <h2>Add Product</h2>
         <form>
@@ -42,17 +39,24 @@ if(isVisible){
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
           <br />
           <label>Price</label>
-          <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+                <div className="input-group mb-3">
+                <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+                </div>
           <br />
           <label>Category:</label>
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option value="" disabled>Select a Category</option>
+          <div className="input-group mb-3">
+          <select onChange={(e) => setCategory(e.target.value)}>
+            <option  selected disabled>Select a Category</option>
             {categories.map((cat, index) => (
               <option key={index} value={cat.name}>{cat.name}</option>
             ))}
           </select>
+          </div>
           <br />
-          <button type="button" onClick={handleSave}>Add</button>
+          <div className="d-flex">
+          <button type="button" className="btn btn-warning m-3" onClick={onClose}>Close</button>
+          <button type="submit" className="btn btn-primary m-3"onClick={handleSave}>Add</button>
+          </div>
         </form>
       </div>
     </div>

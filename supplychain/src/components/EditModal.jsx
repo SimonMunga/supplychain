@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './modal.css';
-import apiService from './service/apiService';
+import '../styles/modal.css';
+import apiService from '../service/apiService';
 
 const Modal = ({ isVisible, onClose }) => {
   const [name, setName] = useState('');

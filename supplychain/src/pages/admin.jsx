@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import './home.css';
-import apiService from './service/apiService';
-import { useNavigate } from 'react-router-dom';
-import Modal from './Modal';
-import AddCategoryModal from './AddCategoryModal';
-import './App.css';
-import Updatemodal from './Updatemodal'; 
-import EditModal from './EditModal';
+import React, {useState  } from 'react';
+import '../styles/home.css';
+import '../styles/App.css';
 import { Link } from 'react-router-dom'; 
+import Aside from '../components/Aside';
 
 
-const PurchaseOrders = () => {
+const Admin = () => {
   
+  const [isNavVisible, setNavVisible] = useState(true);
+  const toggleNavbar = () => {
+    setNavVisible(!isNavVisible);
+};
 
   // Check token when the component mounts
   // useEffect(() => {
@@ -38,42 +37,31 @@ const PurchaseOrders = () => {
 
   return (
     <div className="dashboard-container">
-      <aside className="sidebar">
-        <div className="sidebar-header">
-          <h2>Purchase Order</h2>
-        </div>
-        <nav className="sidebar-nav">
-        <ul>
-            <li><Link to="/home">Home</Link></li>
-            <li><Link to="#">Products</Link></li>
-            <li><Link to="/rawmaterials">Raw Materials</Link></li>
-            <li><Link to="#">Categories</Link></li>
-            <li><Link to="#">Suppliers</Link></li>
-            <li><Link to="#">Customers</Link></li>
-            <li><Link to="/PurchaseOrders" style={{color:"blue"}}>Purchase Orders</Link></li> 
-            <li><Link to="/admin">Admin</Link></li> 
-          </ul>
-        </nav>
-      </aside>
+       <Aside
+      isNavVisible={isNavVisible}
+      />
       <main className="main-content">
-        <header className="main-header">
-          <h1>User</h1>
-          
+      <header className="main-header">
+          <div className='d-flex'>
+          <button className="toggle-btn mr-2" onClick={toggleNavbar}>
+          <i style={{color:"aqua"}}className="fa-solid fa-bars"></i>
+          </button>
+          <h1 className="top-text">  <i className="fas fa-user-shield">  </i>  Admin</h1>
+          </div>
+          <h1 className="top-text">Username</h1>
+
         </header>
         <div className='content'>
-        <div className="header-buttons">
-            <button className="add-button mr-3">
-              New Purchase Order
-            </button>
-          </div>
 
         <section className="inventory-table">
           <table>
             <thead>
               <tr>
-                <th>PO Number</th>
-                <th>Supplier</th>
-                <th>Date</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Verified</th>
+                <th>Status</th>
+                <th>Remove user</th>
                 
               </tr>
             </thead>
@@ -99,4 +87,4 @@ const PurchaseOrders = () => {
   );
 };
 
-export default PurchaseOrders;
+export default Admin;

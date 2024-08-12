@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import apiService from './service/apiService';
-import './OtpVerificationForm.css';
+import apiService from '../service/apiService';
+import '../styles/OtpVerificationForm.css';
 
 
 const OtpVerificationForm = ({ onSubmit }) => {

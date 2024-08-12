@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import './modal.css';
-import apiService from './service/apiService';
+import '../styles/modal.css';
+import apiService from '../service/apiService';
 
 const Modal = ({ isVisible, onClose }) => {
   const [name, setName] = useState('');
   
 
   const handleSave = (e) => {
-    alert("called")
     e.preventDefault();
     apiService.createcategory({ name })
       .then(response => {
@@ -26,21 +25,22 @@ const Modal = ({ isVisible, onClose }) => {
   }
 
   return (
-    <div className="modal">
-      <div className="modal-content">
+    <div className="modal-overlay">
+      <div className="modalProduct">
         <span className="close" onClick={onClose}>&times;</span>
-        <h2>Update stock</h2>
+        <h2>Add Category</h2>
         <form onSubmit={handleSave}>
-          <label>quantity</label>
+          <label>Name:</label>
           <input
-            type="number"
+            type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required // Optional: add validation to make the field required
           />
-          <br />
-          <br />
-          <button type="submit" onClick={handleSave}>Add</button>
+          <div className="d-flex">
+          <button type="button" className="btn btn-warning m-3" onClick={onClose}>Close</button>
+          <button type="submit" className="btn btn-primary m-3"onClick={handleSave}>Add</button>
+          </div>
         </form>
       </div>
     </div>
