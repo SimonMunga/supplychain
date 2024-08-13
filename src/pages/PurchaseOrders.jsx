@@ -84,10 +84,7 @@ const PurchaseOrders = () => {
                 <th>Supplier</th>
                 <th>Date</th>
                 <th>Status</th>
-<<<<<<< HEAD:supplychain/src/pages/PurchaseOrders.jsx
                 <th><i className='fas fa-trash'></i></th>
-=======
->>>>>>> 4537334082eed94ce35f2f65543f67ac6d9f6430:src/pages/PurchaseOrders.jsx
                 
               </tr>
             </thead>
