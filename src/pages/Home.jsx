@@ -129,7 +129,7 @@ const Home = () => {
           <button className="toggle-btn mr-2" onClick={toggleNavbar}>
           <i style={{color:"aqua"}}className="fa-solid fa-bars"></i>
           </button>
-          <h1 className="top-text"><i className="fas fa-home"></i>  Home</h1>
+          <h1 className="top-text">Home</h1>
           </div>
           <h1 className="top-text">Username</h1>
 

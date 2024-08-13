@@ -63,4 +63,38 @@
     background: #d9534f;
     color: white;
   }
-  
+  /* Main Header Styling */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  width: calc(100% - 250px); /* Adjust width based on sidebar width */
+}
+
+.sidebar-hide ~ .main-content .main-header {
+  width: 100%;
+  margin-left: 0;
+}
+
+.toggle-btn {
+  margin-right: 10px;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+/* Media query for small devices */
+@media (max-width: 768px) {
+  .main-header {
+      width: calc(100% - 200px); /* Adjust width based on sidebar width */
+  }
+  .sidebar-hide ~ .main-content .main-header {
+      width: 100%;
+  }
+}
