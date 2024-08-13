@@ -13,7 +13,31 @@ const PurchaseOrders = () => {
     setNavVisible(!isNavVisible);
 };
 
+<<<<<<< HEAD
   
+=======
+  // Check token when the component mounts
+  // useEffect(() => {
+  //   apiService.checktoken(localStorage.getItem('token'))
+  //     .then(response => {
+  //       if (response.data.message !== 'valid') {
+  //         navigate('/login');
+  //       }
+  //     })
+  //     .catch(error => {
+  //       navigate('/login');
+  //       if (error.response) {
+  //         alert(error.response.data.message);
+  //       } else if (error.request) {
+  //         alert('No response received from the server.');
+  //       } else {
+  //         alert(`Error: ${error.message}`);
+  //       }
+  //       console.error('Error checking token:', error);
+  //     });
+  // }, [navigate]);
+
+>>>>>>> 66d50aa014d523cf4ab654d0da7b924a6297dc5f
   useEffect (() =>{
     const getPurchaseOrders = async () => {
       try{

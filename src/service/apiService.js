@@ -1,6 +1,10 @@
 import axios from 'axios';
 
+<<<<<<< HEAD
 const API_URL = 'http://192.168.230.123:8080'; // Adjust the URL based on your backend
+=======
+const API_URL = 'http://127.0.0.191:8080'; // Adjust the URL based on your backend
+>>>>>>> 66d50aa014d523cf4ab654d0da7b924a6297dc5f
 const token = localStorage.getItem('token');
 if (!token) {
     console.log('No token found');
@@ -39,7 +43,9 @@ const apiService = {
     updateProduct: (body) => axios.post(`${API_URL}/products/edit`,body),
     createRawMaterialProportion: (body) => axios.post(`${API_URL}/rawmaterialproportion/create`,body),
     deleteRawMaterialProportion: (id) => axios.delete(`${API_URL}/rawmaterialproportion/${id}`),
-    createProduction: (body) => axios.post(`${API_URL}/production/create`,body)
+    createProduction: (body) => axios.post(`${API_URL}/production/create`,body),
+    getAllPurchaseOrders: () => axios.get(`${API_URL}/purchaseorder/all`),
+    completePurchaseOrder: (body) => axios.post(`${API_URL}/purchaseorder/update`,body)
 }
 
 export default apiService;

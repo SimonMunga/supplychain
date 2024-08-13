@@ -10,7 +10,7 @@ const Modal = ({onClose,categories}) => {
   const [price, setPrice] = useState('')
   
   const handleSave = () => {
-    alert(name+ price + category)
+   
     
     apiService.createProduct({"name":name,"price":price,"category":category})
     .then (response => {
