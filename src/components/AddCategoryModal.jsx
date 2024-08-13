@@ -2,19 +2,21 @@ import React, { useState } from 'react';
 import '../styles/modal.css';
 import apiService from '../service/apiService';
 
-const Modal = ({ isVisible, onClose, rawMaterialId }) => {
-  const [quantity, setQuantity] = useState('');
+const Modal = ({ isVisible, onClose }) => {
+  const [name, setName] = useState('');
+  
 
   const handleSave = (e) => {
     e.preventDefault();
-    apiService.updaterawmaterials({"id":rawMaterialId, "quantity":quantity })
+    apiService.createcategory({ name })
       .then(response => {
-        alert(response.data.message);
-        setQuantity(''); // Clear the input field
-        onClose(); // Close the modal
+        alert('Successful');
+        
+        setName(''); // Clear the input field
+        onClose(); // Optionally close the modal
       })
       .catch(error => {
-        alert(error);
+        alert('Error');
       });
   };
 

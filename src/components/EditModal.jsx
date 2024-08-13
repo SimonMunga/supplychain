@@ -5,18 +5,14 @@ import apiService from '../service/apiService';
 const Modal = ({ isVisible, onClose }) => {
   const [name, setName] = useState('');
   
-  const navigate = useNavigate();
+
   const handleSave = (e) => {
     alert("called")
     e.preventDefault();
     apiService.createcategory({ name })
       .then(response => {
-        if(response.data.message !='Created Successfully'){
-        alert(response.data.message);}
-      else{
-        window.location.href = "/home"
-      }
-  
+        alert('Successful');
+        
         setName(''); // Clear the input field
         onClose(); // Optionally close the modal
       })
