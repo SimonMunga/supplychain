@@ -39,7 +39,9 @@ const apiService = {
     updateProduct: (body) => axios.post(`${API_URL}/products/edit`,body),
     createRawMaterialProportion: (body) => axios.post(`${API_URL}/rawmaterialproportion/create`,body),
     deleteRawMaterialProportion: (id) => axios.delete(`${API_URL}/rawmaterialproportion/${id}`),
-    createProduction: (body) => axios.post(`${API_URL}/production/create`,body)
+    createProduction: (body) => axios.post(`${API_URL}/production/create`,body),
+    getAllPurchaseOrders: () => axios.get(`${API_URL}/purchaseorder/all`),
+    completePurchaseOrder: (body) => axios.post(`${API_URL}/purchaseorder/update`,body)
 }
 
 export default apiService;
