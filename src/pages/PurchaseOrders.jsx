@@ -1,12 +1,14 @@
-import React, {useState  } from 'react';
+import React, {useEffect, useState  } from 'react';
 import '../styles/home.css';
 import '../styles/App.css';
 import { Link } from 'react-router-dom'; 
 import Aside from '../components/Aside';
+import PurchaseOrderService from '../service/PurchaseOrderService';
 
 
 const PurchaseOrders = () => {
   const [isNavVisible, setNavVisible] = useState(true);
+  const [PurchaseOrders, setPurchaseOrders] = useState([])
   const toggleNavbar = () => {
     setNavVisible(!isNavVisible);
 };
@@ -32,7 +34,24 @@ const PurchaseOrders = () => {
   //     });
   // }, [navigate]);
 
-  
+  useEffect (() =>{
+    const getPurchaseOrders = async () => {
+      try{
+      const response = await PurchaseOrderService.getAllPurchaseOrders()
+      
+      setPurchaseOrders(response)
+      console.log(response)
+      
+    }catch(error){
+      console.log(error)
+    }
+    };
+    getPurchaseOrders()
+
+  },[])
+  const completePurchaseOrder = async() =>{
+    
+  }
 
   return (
     <div className="dashboard-container">
@@ -60,28 +79,29 @@ const PurchaseOrders = () => {
         <section className="inventory-table">
           <table>
             <thead>
-              <tr>
+              <tr style={{color:"brown"}}>
                 <th>PO Number</th>
                 <th>Supplier</th>
                 <th>Date</th>
                 <th>Status</th>
+<<<<<<< HEAD:supplychain/src/pages/PurchaseOrders.jsx
+                <th><i className='fas fa-trash'></i></th>
+=======
+>>>>>>> 4537334082eed94ce35f2f65543f67ac6d9f6430:src/pages/PurchaseOrders.jsx
                 
               </tr>
             </thead>
-            {/* <tbody>
-              {inventory.map((item, index) => (
+            <tbody>
+              {PurchaseOrders.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.name}</td>
-                  <td>{item.category ? item.category.name : 'N/A'}</td>
-                  <td>{item.quantity}<button className="update_button" onClick={toggleUpdatemodal}> Update </button></td>
-                  <td>${item.price ? item.price.toFixed(2) : 'N/A'}</td>
-                  <td>
-                    <button className='edit_button' onClick={toggleEditModal}>Edit</button>
-                    <button className="delete_button" onClick={() => deleteInventoryItem(item.id)}> Delete </button>
-                  </td>
+                  <td>{item.poNumber}</td>
+                  <td>{item.supplier.name ? item.supplier.name : 'N/A'}</td>
+                  <td>{item.date}</td>
+                  <td>{item.delivered ? <button disabled className='btn btn-success'>Delivered</button>: <button className="btn btn-warning">Complete</button>}</td>
+                  <td><button className='btn btn-danger'>delete</button></td>
                 </tr>
               ))}
-            </tbody> */}
+            </tbody>
           </table>
         </section>
         </div>
